@@ -1,0 +1,340 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>gate</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>ldoc</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/coc.html">coc</a></li>
+  <li><a href="../modules/cocomo.html">cocomo</a></li>
+  <li><a href="../modules/color.html">color</a></li>
+  <li><strong>lib</strong></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>lib</code></h1>
+<p>Library Functions</p>
+<p>
+
+</p>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#cap">cap (z, lo, hi)</a></td>
+	<td class="summary">Return a number that is not above or below <code>lo</code> or <code>hi</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#copy">copy (t)</a></td>
+	<td class="summary">Return a deep copy of <code>obj</code> (avoiding infinite loops).</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#from">from (lo, hi)</a></td>
+	<td class="summary">Return a real number within bounds <code>lo</code> and <code>hi</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#int">int (x)</a></td>
+	<td class="summary">Round a number to a positive integer.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#keys">keys (t)</a></td>
+	<td class="summary">Iterator: returns the key/values of a <a href="https://www.lua.org/manual/5.3/manual.html#6.6">table</a>,
+ sorted by they <code>key</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#oo">oo (t, pre, indent)</a></td>
+	<td class="summary">Recursively print a table <code>t</code>, with indentation.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#within">within (z, lo, hi)</a></td>
+	<td class="summary">Return a real number <code>z</code> wrapped within <code>lo</code> and <code>hi</code>.</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "cap"></a>
+    <strong>cap (z, lo, hi)</strong>
+    </dt>
+    <dd>
+    Return a number that is not above or below <code>lo</code> or <code>hi</code>.
+ If outside that range, return one of <code>lo</code> and <code>hi</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">z</span>
+            <span class="types"><span class="type">number</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">lo</span>
+            <span class="types"><span class="type">number</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">hi</span>
+            <span class="types"><span class="type">number</span></span>
+
+
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        number
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "copy"></a>
+    <strong>copy (t)</strong>
+    </dt>
+    <dd>
+    Return a deep copy of <code>obj</code> (avoiding infinite loops).
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">t</span>
+            <span class="types"><span class="type">tab</span></span>
+
+
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        the copy
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "from"></a>
+    <strong>from (lo, hi)</strong>
+    </dt>
+    <dd>
+    Return a real number within bounds <code>lo</code> and <code>hi</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">lo</span>
+            <span class="types"><span class="type">number</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">hi</span>
+            <span class="types"><span class="type">number</span></span>
+
+
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        float
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "int"></a>
+    <strong>int (x)</strong>
+    </dt>
+    <dd>
+    Round a number to a positive integer.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">x</span>
+            <span class="types"><span class="type">number</span></span>
+
+
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        int
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "keys"></a>
+    <strong>keys (t)</strong>
+    </dt>
+    <dd>
+    Iterator: returns the key/values of a <a href="https://www.lua.org/manual/5.3/manual.html#6.6">table</a>,
+ sorted by they <code>key</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">t</span>
+            <span class="types"><span class="type">tab</span></span>
+
+
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        func
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "oo"></a>
+    <strong>oo (t, pre, indent)</strong>
+    </dt>
+    <dd>
+    Recursively print a table <code>t</code>, with indentation.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">t</span>
+            <span class="types"><span class="type">tab</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">pre</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.3/manual.html#6.4">string</a></span>
+         : what to write before the table
+        </li>
+        <li><span class="parameter">indent</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.3/manual.html#6.4">string</a></span>
+         : defaults to <code>&quot;&quot;</code> then grows with recursion.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "within"></a>
+    <strong>within (z, lo, hi)</strong>
+    </dt>
+    <dd>
+    Return a real number <code>z</code> wrapped within <code>lo</code> and <code>hi</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">z</span>
+            <span class="types"><span class="type">number</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">lo</span>
+            <span class="types"><span class="type">number</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">hi</span>
+            <span class="types"><span class="type">number</span></span>
+
+
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        number
+    </ol>
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2020-10-03 17:02:52 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>
