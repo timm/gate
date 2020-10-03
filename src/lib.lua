@@ -2,7 +2,7 @@
 
 --- Library Functions
 
-keys=nil
+local lib={}
 
 --- Return a number that is not above or below `lo` or `hi`.
 -- If outside that range, return one of `lo` and `hi`.
@@ -10,7 +10,7 @@ keys=nil
 --  @number lo
 --  @number hi
 --  @return number
-function cap(z,lo,hi)    
+function lib.cap(z,lo,hi)    
   if     z < lo then return lo
   elseif z > hi then return hi
   else               return z end
@@ -19,7 +19,7 @@ end
 --- Return a deep copy of `obj` (avoiding infinite loops).
 -- @param obj 
 -- @return the copy
-function copy(obj)
+function lib.copy(obj)
   local old,new
   if type(obj) ~= 'table' then return obj end
   if old and old[obj] then return old[obj] end
@@ -33,18 +33,18 @@ end
 --  @number lo
 --  @number hi
 --  @return float
-function from(lo,hi) return lo+(hi-lo)*math.random() end
+function lib.from(lo,hi) return lo+(hi-lo)*math.random() end
 
 --- Round a number to a positive integer.
 --  @number x
 --  @return  int
-function int(x)        return (x+0.5)//1 end
+function lib.int(x)        return (x+0.5)//1 end
 
 --- Iterator: returns the key/values of a `table`,
 -- sorted by they `key`.
 -- @tab t
 -- @return func
-function keys(t)
+function lib.keys(t)
   local i,u = 0,{}
   for k,_ in pairs(t) do u[#u+1] = k end
   table.sort(u)
@@ -58,11 +58,11 @@ end
 -- @tab t 
 -- @string pre : what to write before the table
 -- @string indent : defaults to `""` then grows with recursion.
-function oo(t,pre,    indent)
+function lib.oo(t,pre,    indent)
   local pre    = pre or ""
   local indent = indent or 0
   if indent < 10 then
-    for k, v in keys(t or {}) do
+    for k, v in lib.keys(t or {}) do
       if not (type(k)=='string' and k:match("^_")) then
         if not (type(v)=='function') then
           local fmt = pre..string.rep("|  ",indent)..tostring(k)..": "
@@ -74,7 +74,7 @@ function oo(t,pre,    indent)
 end
 
 --- Report rogue locals
-function rogues()
+function lib.rogues()
   local ignore= {
         the=true,      tostring=true,  tonumber=true, assert=true,
         rawlen=true,   pairs=true,     ipairs=true,
@@ -98,5 +98,7 @@ function rogues()
 --  @number lo
 --  @number hi
 --  @return number
-function within(z,lo,hi) 
+function lib.within(z,lo,hi) 
   return (z>=lo and z<=hi) and z or lo+z%(hi-lo) end
+
+return lib
