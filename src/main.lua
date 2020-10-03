@@ -2,6 +2,7 @@
 -- (c) Tim Menzies, timm@ieee.org 2020,BSD 2-clause license
 
 require "lib"
+local eg=require "eg"
 local c=require "cocomo"
 
 oo(c(i))
@@ -12,3 +13,6 @@ while i <= #arg do
   if arg[i] == "--seed" then
     math.randomseed(tonumber(arg[i+1])); i=1+1 end
 end
+
+eg.all()
+rogues()

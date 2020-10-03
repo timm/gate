@@ -1,3 +1,5 @@
 lua
 ldoc
 htop
+rerun
+awk

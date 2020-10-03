@@ -2,26 +2,22 @@
 
 Dir=$(cd $( dirname "${BASH_SOURCE[0]}" ) && pwd )
 
+#---------------------------------------------#---------
 alias docs="doc gate"                         # document
 
 doc() {
   mkdir -p $Dir/docs
   touch $Dir/docs/.nojeyjll
-  ldoc -t "$1" -d $Dir/docs -a -f markdown $Dir/../gate 
+  ldoc -t "$1" -d $Dir/docs -a -f markdown $Dir/src
 }
-hello() {
-  clear
-  tput bold; tput setaf 32; cat <<-'EOF'
-       
--. .-.   .-. .-.   .-. .-.   .  
-||\|||\ /|||\|||\ /|||\|||\ /|  GATE v1
-|/ \|||\|||/ \|||\|||/ \|||\||  github.com/timm.gate 
-~   `-~ `-`   `-~ `-`   `-~ `-  (c) Tim Menzies 2020 MIT license
-
-EOF
-  tput sgr0; tput bold; tput setaf 0
-  awk '/^alias/ {print $0} END{print""}' $Dir/ell
-  tput sgr0
+banner() {
+  cat <<-'EOF'
+   .-.
+  (o o)  boo !!
+  | O \    there's no escape 
+   \   \     from (sh)ELL, v0.4
+    `~~~'
+	EOF
 }
 want=$Dir/.travis.yml
 [ -f "$want" ] || cat<<-'EOF'>$want
@@ -41,26 +37,38 @@ want=$Dir/.travis.yml
 EOF
 
 ###################################################
+hello() {
+  clear
+  tput bold; tput setaf 32
+  banner
+  tput sgr0; tput bold; tput setaf 0
+  awk '/^alias/ {print $0} ' $Dir/ELL | sort
+  echo ""
+  tput sgr0
+}
+#---------------------------------------------#---------
 alias bye="tmux kill-session"                 # exit
 alias ga="git add *"                          # add to local repo
 alias gg="git pull"                           # update code from web
 alias gp="ga;git commit -am save;git push;gs" # end-of-day actions
 alias gs="git status"                         # status
-alias reload='. $Dir/ell'                     # reload these tools
+alias reload='. $Dir/ELL'                     # reload these tools
+alias vims="vim +PluginInstall +qall"         # install vim plugins
+
 
 mytmux() {
   session=$RANDOM
   tmux start-server
   sleep 1
   tmux new-session -d -s $session  
-  tmux send-keys ". $Dir/ell"  C-m "clear" C-m
+  tmux send-keys ". $Dir/ELL"  C-m "clear" C-m
   tmux splitw -h -p 20
   tmux selectp -t 1
-  tmux send-keys ".  $Dir/ell" C-m "clear; hello" C-m
+  tmux send-keys ".  $Dir/ELL" C-m "clear; hello" C-m
 
   tmux splitw -v  -p 5
   tmux selectp -t 2
-  tmux send-keys ".  $Dir/ell" C-m  "htop"  C-m
+  tmux send-keys ".  $Dir/ELL" C-m  "htop"  C-m
 
   tmux attach-session -t $session
 }
@@ -214,6 +222,47 @@ EOF
 
 want=$Dir/.gitignore
 [ -f "$want" ] || cat<<-'EOF'>$want
+	# Compiled Lua sources
+	luac.out
+	
+	# luarocks build files
+	*.src.rock
+	*.zip
+	*.tar.gz
+	
+	# Object files
+	*.o
+	*.os
+	*.ko
+	*.obj
+	*.elf
+	
+	# Precompiled Headers
+	*.gch
+	*.pch
+	
+	# Libraries
+	*.lib
+	*.a
+	*.la
+	*.lo
+	*.def
+	*.exp
+	
+	# Shared objects (inc. Windows DLLs)
+	*.dll
+	*.so
+	*.so.*
+	*.dylib
+	
+	# Executables
+	*.exe
+	*.out
+	*.app
+	*.i*86
+	*.x86_64
+	*.hex
+	
 	# Swap
 	[._]*.s[a-v][a-z]
 	!*.svg  # comment out if you don't need vector files
