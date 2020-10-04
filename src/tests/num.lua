@@ -1,7 +1,7 @@
-local eg=require("eg").all
-local oo=require("lib").oo
-local add=require("col").add
-local Num=require("num")
+local eg=dofiled("lib/eg").all
+local oo=dofiled("lib/misc").oo
+local add=dofiled("cols/col").add
+local Num=dofiled("cols/num")
 
 eg {num1=function(n)
    n=Num.new()

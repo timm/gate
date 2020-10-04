@@ -1,6 +1,6 @@
 -- vim: ft=lua ts=2 sw=2 et:
 
-local cl=require "color"
+local cl=dofiled "lib/color"
 
 local eg={}
 eg.try=0

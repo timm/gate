@@ -2,7 +2,7 @@
 
 --- Colorize output string 
 
-color={}
+local color={}
 
 --- Print a string, colored green.
 -- @string txt

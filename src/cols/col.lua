@@ -1,10 +1,9 @@
 -- vim: ft=lua ts=2 sw=2 et:
 
 --- Mixin functions for columns
-
-local the = require "the"
+local the = dofiled("the")
 local col = {}
-
+print(1)
 --- The initialization mixin.
 -- Sett up  a new column `c`'s
 -- `txt` name and `pos`ition

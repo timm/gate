@@ -1,8 +1,8 @@
 -- vim: ft=lua ts=2 sw=2 et:
 
 --- Summarize a stream of non-numbers
-local uses=require("lib").uses
-local col=require("col").col
+local uses=dofiled("lib/misc").uses
+local col=dofiled("cols/col").col
 
 local Sym = { most=0, seen={}}
 

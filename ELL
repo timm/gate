@@ -14,12 +14,15 @@ if [ "$1" == "--okspy" ]; then
   exit $?
 elif [ "$1" == "--oks" ]; then
   testall
+  exit 0
 elif [ "$1" == "--ok" ]; then
-   (cd $Dir/src; lua ok$2.lua)
+  $(which lua) -e "dofile(\"$Dir/src/the.lua\")" $Dir/src/tests/$2.lua
+  exit 0
 fi
 
 #---------------------------------------------#---------
 alias docs="doc gate"                         # document
+alias lua="$(which lua) -e 'dofile(\"$Dir/src/the.lua\")' "
 
 doc() {
   mkdir -p $Dir/docs
@@ -28,13 +31,14 @@ doc() {
 }
 banner() {
   cat <<-'EOF'
-    .-.
-   (o o)    boo !!
-   | O \      there's no escape 
-    \   \       from (sh)ELL, v0.4
-     `~~~'
-
-	EOF
+          ___
+        _/ @@\     never escape ...
+       ( \  O/__     ... from (sh)ELL !!!
+        \    \__)      (version 0.8)
+        /     \
+  jgs  /      _\
+      `"""""``
+EOF
 }
 want=$Dir/.travis.yml
 [ -f "$want" ] || cat<<-'EOF'>$want

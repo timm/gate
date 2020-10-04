@@ -3,9 +3,9 @@
 --- Effort and rist estimation
 -- For moldes defined in `risk.lua` and `coc.lua`.
 
-local lib= require "lib"
-local risk0= require "risk"
-local coc0 =  require "coc"
+local lib= dofiled "lib/misc"
+local risk0= dofiled "xomo/risk"
+local coc0= dofiled "xomo/coc"
 
 local from,within,int = lib.from, lib.within, lib.int
 local cocomo={}

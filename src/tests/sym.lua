@@ -1,7 +1,7 @@
-local eg=require("eg").all
-local oo=require("lib").oo
-local add=require("col").add
-local Sym=require("sym")
+local eg=dofiled("lib/eg").all
+local oo=dofiled("lib/misc").oo
+local add=dofiled("cols/col").add
+local Sym=dofiled("cols/sym")
 
 eg {sym1=function(s)
    s=Sym.new()

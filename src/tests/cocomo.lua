@@ -1,6 +1,6 @@
-lib=require "lib"
-eg=require "eg"
-cocomo=require "cocomo"
+local lib=dofiled("lib/misc")
+local eg=dofiled("lib/eg")
+local cocomo=require("xomo/cocomo")
 
 eg.all {
 one = function(self) 

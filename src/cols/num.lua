@@ -2,8 +2,8 @@
 
 --- Summarize a stream of numbers
 
-local uses=require("lib").uses
-local col=require("col").col
+local uses=dofiled("lib/misc").uses
+local col=dofiled("cols/col").col
 
 local Num = {mu=0, m2=0, sd=0,
              lo=math.huge, hi= -math.huge}

@@ -1,5 +1,5 @@
-local eg=require("eg").all
-local lib=require("lib")
+local eg=dofiled("lib/eg").all
+local lib=dofiled("lib/misc")
 
 eg {lib1=function( t,n)
   t={}
