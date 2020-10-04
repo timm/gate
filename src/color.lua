@@ -1,4 +1,4 @@
--- vim : ft=lua ts=2 sw=2 et:
+-- vim: ft=lua ts=2 sw=2 et:
 
 --- Colorize output string 
 

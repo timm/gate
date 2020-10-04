@@ -1,4 +1,4 @@
--- vim : ft=lua ts=2 sw=2 et:
+-- vim: ft=lua ts=2 sw=2 et:
 
 --- Library Functions
 
@@ -25,7 +25,7 @@ function lib.copy(obj)
   if old and old[obj] then return old[obj] end
   old, new = old or {}, {}
   old[obj] = new
-  for k, v in pairs(obj) do new[copy(k, old)]=copy(v, old) end
+  for k, v in pairs(obj) do new[lib.copy(k, old)]=lib.copy(v, old) end
   return setmetatable(new, getmetatable(obj))
 end
 
@@ -54,6 +54,27 @@ function lib.keys(t)
       return u[i], t[u[i]] end end 
 end 
 
+local l,r,c=math.log,math.random, math.cos
+--- Sample from a normal distribution
+-- @number mu : defaults to 0
+-- @number sd : defaults to 1
+-- @returns number
+function lib.norm(mu,sd) 
+  local r = math.random
+  mu = mu or 0
+  sd = sd or 1
+  return mu + sd*(-2*l(r()))^0.5*c(6.2831853*r()) 
+end
+
+--- Print a table on one line
+-- @tab t : table to print
+-- @string pre : some text to prepend to the output (defaults to "")
+function lib.o(t,pre)
+  local s, sep = "", ""
+  for _,v in pairs(t or {}) do s = s..sep..tostring(v); sep=", " end
+  print((pre or "") .. '{' .. s .. '}')
+end
+
 --- Recursively print a table `t`, with indentation.
 -- @tab t 
 -- @string pre : what to write before the table
@@ -68,7 +89,7 @@ function lib.oo(t,pre,    indent)
           local fmt = pre..string.rep("|  ",indent)..tostring(k)..": "
           if type(v) == "table" then
             print(fmt)
-            oo(v, pre, indent+1)
+            lib.oo(v, pre, indent+1)
           else
             print(fmt .. tostring(v)) end end end end end
 end
@@ -92,6 +113,23 @@ function lib.rogues()
     if not ignore[k] then
       if k:match("^[^A-Z]") then
         print("-- ROGUE ["..k.."]")  end end end end
+
+function lib.round(num, places)
+  local mult = 10^(places or 0)
+  return math.floor(num * mult + 0.5) / mult
+end
+
+
+--- Polymorphic dispatching
+-- @fun klass : meta class
+-- @tab inits : `key`/`value` initializations
+function lib.uses(klass,has)
+  local new = lib.copy(klass or {})
+  for k,v in pairs(has or {}) do new[k] = v end
+  setmetatable(new, klass)
+  klass.__index = klass
+  return new
+end
 
 --- Return a real number `z` wrapped within `lo` and `hi`.
 --  @number z

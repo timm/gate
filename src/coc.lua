@@ -1,11 +1,10 @@
--- vim : ft=lua ts=2 sw=2 et:
+-- vim: ft=lua ts=2 sw=2 et:
 
--------
--- Return valid ranges in Cocomo
----
+--- Return valid ranges in Cocomo
 
 local p,n,s="+","-","*"
 return {
+  loc = {"1",2,200},
   acap= {n}, cplx={p,1,6}, prec={s,1,6},
 	aexp= {n}, data={p,2,5}, flex={s,1,6},
 	ltex= {n}, docu={p},     arch={s,1,6},

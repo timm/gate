@@ -1,4 +1,4 @@
--- vim : ft=lua ts=2 sw=2 et:
+-- vim: ft=lua ts=2 sw=2 et:
 local  _,ne,nw,nw4,sw,sw4,ne46,w26,sw46
 
 _  = 0

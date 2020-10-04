@@ -1,3 +1,5 @@
+-- vim: ft=lua ts=2 sw=2 et:
+
 local cl=require "color"
 
 local eg={}
@@ -26,16 +28,13 @@ function eg.within(x,y,z)
   assert(x <= y and y <= z, 'outside range ['..x..' to '..']')
 end
 
-function eg.all() 
-  for group,funs in pairs(eg.egs) do
-    print(group)
-    for name,fun in pairs(funs) do
-      eg.run(group ..":".. name,fun) end end 
-end
+function eg.all(all) 
+ for name,fun in pairs(all or eg.egs.demo) do
+    eg.run(name,fun) end 
+end 
 
-eg.egs.all={}
-function eg.egs.all.one() assert(1==2) end
-
-eg.all()
+eg.egs.demo = {}
+function eg.egs.demo.one() assert(1==2) end
+function eg.egs.demo.two() assert(1==1) end
 
 return eg 

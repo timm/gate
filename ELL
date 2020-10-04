@@ -2,21 +2,38 @@
 
 Dir=$(cd $( dirname "${BASH_SOURCE[0]}" ) && pwd )
 
+testall() { 
+  cd $Dir/src
+  for f in ok*.lua;  do 
+    lua $f
+  done
+}
+
+if [ "$1" == "--okspy" ]; then
+  testall | awk '{print} /FAIL!/ {n++} END {exit n==1}' 
+  exit $?
+elif [ "$1" == "--oks" ]; then
+  testall
+elif [ "$1" == "--ok" ]; then
+   (cd $Dir/src; lua ok$2.lua)
+fi
+
 #---------------------------------------------#---------
 alias docs="doc gate"                         # document
 
 doc() {
   mkdir -p $Dir/docs
   touch $Dir/docs/.nojeyjll
-  ldoc -t "$1" -d $Dir/docs -a -f markdown $Dir/src
+  ldoc -p "$1" -d $Dir/docs -a -f markdown $Dir/src
 }
 banner() {
   cat <<-'EOF'
-   .-.
-  (o o)  boo !!
-  | O \    there's no escape 
-   \   \     from (sh)ELL, v0.4
-    `~~~'
+    .-.
+   (o o)    boo !!
+   | O \      there's no escape 
+    \   \       from (sh)ELL, v0.4
+     `~~~'
+
 	EOF
 }
 want=$Dir/.travis.yml
@@ -33,7 +50,8 @@ want=$Dir/.travis.yml
 	
 	script:
 	  - pwd
-	  - lua dart.lua -U all
+	  - cd src
+    - ../ELL --test
 EOF
 
 ###################################################
@@ -47,6 +65,7 @@ hello() {
   tput sgr0
 }
 #---------------------------------------------#---------
+alias ell="sh $Dir/ell "                      # ell
 alias bye="tmux kill-session"                 # exit
 alias ga="git add *"                          # add to local repo
 alias gg="git pull"                           # update code from web
@@ -54,7 +73,10 @@ alias gp="ga;git commit -am save;git push;gs" # end-of-day actions
 alias gs="git status"                         # status
 alias reload='. $Dir/ELL'                     # reload these tools
 alias vims="vim +PluginInstall +qall"         # install vim plugins
-
+alias ok="ell --ok "                          # run eone test
+alias oks="ell --oks"                         # run all tests once
+alias okspy="rerun 'sh $Dir/ELL --oks'"       # keep running all tests
+alias ls="ls -G "                             # colorful ls
 
 mytmux() {
   session=$RANDOM

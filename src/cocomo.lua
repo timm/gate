@@ -1,56 +1,92 @@
 -- vim: ft=lua ts=2 sw=2 et:
 
+--- Effort and rist estimation
+-- For moldes defined in `risk.lua` and `coc.lua`.
+
 local lib= require "lib"
 local risk0= require "risk"
 local coc0 =  require "coc"
 
+local from,within,int = lib.from, lib.within, lib.int
 local cocomo={}
- 
-function cocomo.effort(i,coc)
+
+--- Define the internal `cocomo` data structure:
+-- `x` slots (for business-level decisions) and
+-- `y` slots (for things derived from those decisions, 
+-- like `self.effort` and `self.risk')
+function cocomo.new(self,coc)
+  self = self or {x={}, y={}}
+  self.about = self.about or coc
+  return self
+end
+
+--- Change the keys `x1,x2...` 
+-- in  a model, (and wipe anyting computed from `x`).
+-- @tab  self : a `cocomo` table
+-- @tab  t : a list of key,value pairs that we will update.
+-- @return tab : an updated `cocomo` table
+function cocomo.set(self, t)
+  for x,v in pairs(t) do self.x[x] = v end
+  self.y={}
+  return self
+end
+
+--- Compute effort
+-- @tab  self : what we know about a project
+-- @tab  coc : background knowledge about `self`
+-- @return number : the effort
+function cocomo.effort(self,coc)
   local em,sf=1,0
   for k,t in pairs(coc) do
-    if     t[1] == p then em = em * i.y[k] 
-    elseif t[1] == n then em = em * i.y[k] 
-    else                  sf = sf + i.y[k] end
+    if     t[1] == "+" then em = em * self.y[k] 
+    elseif t[1] == "-" then em = em * self.y[k] 
+    elseif t[1] == "*" then sf = sf + self.y[k] end
   end 
-  return i.y.a*i.y.loc^(i.y.b + 0.01*sf) * em 
+  return self.y.a*self.x.loc^(self.y.b + 0.01*sf) * em 
 end
   
-function cocomo.risks(i,risk)
+--- Compute risk
+-- @tab  self : what we know about a project
+-- @tab  coc : background knowledge about `self`
+-- @return number : the risk
+function cocomo.risks(self,risk)
   local n=0
   for a1,t in pairs(risk) do
     for a2,m in pairs(t) do
-      n  = n  + m[i.x[a1]][i.x[a2]] end end
-  return n/108 
+      n  = n  + m[self.x[a1]][self.x[a2]] end end
+  return n 
 end
 
-function cocomo.y(w,z)
-  if w=="+" then return (z-3)*from( 0.073,  0.21 ) end
-  if w=="-" then return (z-3)*from(-0.187, -0.078) end
-  return                (z-6)*from(-1.58,  -1.014) 
+--- Return a `y` value from `x`
+-- @tab  w : type of column (\*,+,-,1)
+-- @number  x 
+-- @return number 
+function cocomo.y(w,x)
+  if w=="1" then return x end
+  if w=="+" then return (x-3)*from( 0.073,  0.21 ) + 1 end
+  if w=="-" then return (x-3)*from(-0.187, -0.078) + 1 end
+  return                (x-6)*from(-1.56,  -1.014) 
 end
  
 --- Mutatble objects, pairs of `{x,y}`
 -- Ensures that `y` is up to date with the `x` variables.
-function cocomo.ready(i,coc,risk)
+function cocomo.ready(self,coc,risk)
   local y,effort,ready,lo,hi
-  i = i or {x={}, y={}}
-  coc = coc or coc0
+  coc  = coc or coc0
   risk = risk  or risk0
-  i.about = i.about or coc
+  self = cocomo.new(self,coc)
   for k,t in pairs(coc) do 
     lo = t[2] or 1
     hi = t[3] or 5
-    i.x[k] = lib.int(i.x[k] and lib.within(i.x[k],lo,hi) or 
-                     lib.from(lo,hi))
-    i.y[k] = i.y[k] or y(t[1], i.x[k])
+    self.x[k] = int(self.x[k] and within(self.x[k],lo,hi) or 
+                 from(lo,hi))
+    self.y[k] = self.y[k] or cocomo.y(t[1], self.x[k])
   end 
-  i.y.a = i.y.a or lib.from(2.3, 9.18)
-  i.y.b = i.y.b or ((.85 - 1.1)/9.18-2.2)*i.y.a+.9+(1.2-.8)/2
-  i.y.loc = i.y.loc or lib.from(2,2000)
-  i.y.effort = i.y.effort or cocomo.effort(i,coc)
-  i.y.risk = i.y.risk or cocomo.risks(i,risk)
-  return i
+  self.y.a = self.y.a or from(2.3, 9.18)
+  self.y.b = self.y.b or (.85 - 1.1)/(9.18-2.2)*self.y.a+.9+(1.2-.8)/2
+  self.y.effort = self.y.effort or cocomo.effort(self,coc)
+  self.y.risk = self.y.risk or cocomo.risks(self,risk)
+  return self
 end
 
 return cocomo
