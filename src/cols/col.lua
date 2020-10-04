@@ -3,7 +3,7 @@
 --- Mixin functions for columns
 local the = dofiled("the")
 local col = {}
-print(1)
+
 --- The initialization mixin.
 -- Sett up  a new column `c`'s
 -- `txt` name and `pos`ition
