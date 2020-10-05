@@ -9,13 +9,17 @@ local Num = {mu=0, m2=0, sd=0,
              lo=math.huge, hi= -math.huge}
 
 --- Create
+-- @string txt : optional
+-- @number pos : optional
+-- @return : a Num
 function Num.new(txt,pos) 
   return col(uses(Num),txt,pos) end
 
 --- Update
 -- Not called directly (used inside use `col.add`).
-function Num:add(x,    d) 
-  d       = x - self.mu
+-- @number x :
+function Num:add(x)
+  local   = x - self.mu
   self.mu = self.mu + d/self.n
   self.m2 = self.m2 + d*(x - self.mu)
   self.sd = (self.m2<0 or self.n<2) and 0 or (
