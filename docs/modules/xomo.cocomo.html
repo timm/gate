@@ -24,8 +24,11 @@
 
 <div id="navigation">
 <br/>
-<h1>Gate</h1>
 
+<center>
+<img  width=200 src="https://static.wikia.nocookie.net/officialclubpenguinonline/images/6/6e/Ninja_Gate_sprite_006.png/revision/latest/top-crop/width/300/height/300?cb=20190112091533">
+</center>
+<h1>Gate </h1>
 <ul>
   <li><a href="../index.html">Index</a></li>
 </ul>
@@ -49,6 +52,7 @@
 <h2>Tutorials</h2>
 <ul class="nowrap">
   <li><a href="../tutorials/README.md.html">README</a></li>
+  <li><a href="../tutorials/l.md.html">l</a></li>
 </ul>
 <h2>Examples</h2>
 <ul class="nowrap">
@@ -70,10 +74,6 @@
 <h2><a href="#Functions">Functions</a></h2>
 <table class="function_list">
 	<tr>
-	<td class="name" nowrap><a href="#effort">effort (self, coc)</a></td>
-	<td class="summary">Compute effort</td>
-	</tr>
-	<tr>
 	<td class="name" nowrap><a href="#new">new (self, coc)</a></td>
 	<td class="summary">Define the internal <a href="../modules/xomo.cocomo.html">cocomo</a> data structure:
  <code>x</code> slots (for business-level decisions) and
@@ -81,22 +81,26 @@
  like <code>self.effort</code> and `self.risk')</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#ready">ready (self, coc, risk)</a></td>
-	<td class="summary">Mutatble objects, pairs of <code>{x,y}</code>
- Ensures that <a href="../modules/xomo.cocomo.html#y">y</a> is up to date with the <code>x</code> variables.</td>
+	<td class="name" nowrap><a href="#set">set (self, t)</a></td>
+	<td class="summary">Change the keys <code>x1,x2...</code>
+ in  a model, (and wipe anyting computed from <code>x</code>).</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#effort">effort (self, coc)</a></td>
+	<td class="summary">Compute effort</td>
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#risks">risks (self, coc)</a></td>
 	<td class="summary">Compute risk</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#set">set (self, t)</a></td>
-	<td class="summary">Change the keys <code>x1,x2...</code>
- in  a model, (and wipe anyting computed from <code>x</code>).</td>
-	</tr>
-	<tr>
 	<td class="name" nowrap><a href="#y">y (w, x)</a></td>
 	<td class="summary">Return a <a href="../modules/xomo.cocomo.html#y">y</a> value from <code>x</code></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#ready">ready (self, coc, risk)</a></td>
+	<td class="summary">Mutatble objects, pairs of <code>{x,y}</code>
+ Ensures that <a href="../modules/xomo.cocomo.html#y">y</a> is up to date with the <code>x</code> variables.</td>
 	</tr>
 </table>
 
@@ -107,36 +111,6 @@
     <h2 class="section-header "><a name="Functions"></a>Functions</h2>
 
     <dl class="function">
-    <dt>
-    <a name = "effort"></a>
-    <strong>effort (self, coc)</strong>
-    </dt>
-    <dd>
-    Compute effort
-
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">self</span>
-            <span class="types"><span class="type">tab</span></span>
-         : what we know about a project
-        </li>
-        <li><span class="parameter">coc</span>
-            <span class="types"><span class="type">tab</span></span>
-         : background knowledge about <code>self</code>
-        </li>
-    </ul>
-
-    <h3>Returns:</h3>
-    <ol>
-
-        number : the effort
-    </ol>
-
-
-
-
-</dd>
     <dt>
     <a name = "new"></a>
     <strong>new (self, coc)</strong>
@@ -168,33 +142,61 @@
 
 </dd>
     <dt>
-    <a name = "ready"></a>
-    <strong>ready (self, coc, risk)</strong>
+    <a name = "set"></a>
+    <strong>set (self, t)</strong>
     </dt>
     <dd>
-    Mutatble objects, pairs of <code>{x,y}</code>
- Ensures that <a href="../modules/xomo.cocomo.html#y">y</a> is up to date with the <code>x</code> variables.
+    Change the keys <code>x1,x2...</code>
+ in  a model, (and wipe anyting computed from <code>x</code>).
 
 
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">self</span>
-
-
-
+            <span class="types"><span class="type">tab</span></span>
+         : a <a href="../modules/xomo.cocomo.html">cocomo</a> table
         </li>
-        <li><span class="parameter">coc</span>
-
-
-
-        </li>
-        <li><span class="parameter">risk</span>
-
-
-
+        <li><span class="parameter">t</span>
+            <span class="types"><span class="type">tab</span></span>
+         : a list of key,value pairs that we will update.
         </li>
     </ul>
 
+    <h3>Returns:</h3>
+    <ol>
+
+        tab : an updated <a href="../modules/xomo.cocomo.html">cocomo</a> table
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "effort"></a>
+    <strong>effort (self, coc)</strong>
+    </dt>
+    <dd>
+    Compute effort
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">self</span>
+            <span class="types"><span class="type">tab</span></span>
+         : what we know about a project
+        </li>
+        <li><span class="parameter">coc</span>
+            <span class="types"><span class="type">tab</span></span>
+         : background knowledge about <code>self</code>
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        number : the effort
+    </ol>
 
 
 
@@ -224,37 +226,6 @@
     <ol>
 
         number : the risk
-    </ol>
-
-
-
-
-</dd>
-    <dt>
-    <a name = "set"></a>
-    <strong>set (self, t)</strong>
-    </dt>
-    <dd>
-    Change the keys <code>x1,x2...</code>
- in  a model, (and wipe anyting computed from <code>x</code>).
-
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">self</span>
-            <span class="types"><span class="type">tab</span></span>
-         : a <a href="../modules/xomo.cocomo.html">cocomo</a> table
-        </li>
-        <li><span class="parameter">t</span>
-            <span class="types"><span class="type">tab</span></span>
-         : a list of key,value pairs that we will update.
-        </li>
-    </ul>
-
-    <h3>Returns:</h3>
-    <ol>
-
-        tab : an updated <a href="../modules/xomo.cocomo.html">cocomo</a> table
     </ol>
 
 
@@ -293,6 +264,39 @@
 
 
 </dd>
+    <dt>
+    <a name = "ready"></a>
+    <strong>ready (self, coc, risk)</strong>
+    </dt>
+    <dd>
+    Mutatble objects, pairs of <code>{x,y}</code>
+ Ensures that <a href="../modules/xomo.cocomo.html#y">y</a> is up to date with the <code>x</code> variables.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">self</span>
+
+
+
+        </li>
+        <li><span class="parameter">coc</span>
+
+
+
+        </li>
+        <li><span class="parameter">risk</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
 </dl>
 
 
@@ -300,8 +304,9 @@
 </div> <!-- id="main" -->
 <div id="about">
 <i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
-<i style="float:right;">Last updated 2020-10-05 12:16:29 </i>
+<i style="float:right;">Last updated 2020-10-05 14:08:19 </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>
 </html>
+
