@@ -27,7 +27,8 @@ alias lua="$(which lua) -e 'dofile(\"$Dir/src/the.lua\")' "
 doc() {
   mkdir -p $Dir/docs
   touch $Dir/docs/.nojeyjll
-  (cd $Dir/src; ldoc -p "$1" -d $Dir/docs -a -f markdown ./ )
+  #(cd $Dir/src; ldoc -p "$1" -d $Dir/docs -a -f markdown ./ )
+  (cd $Dir/src; ldoc -c $Dir/docs/config.ld -d $Dir/docs -a -f markdown ./ )
 }
 banner() {
   cat <<-'EOF'

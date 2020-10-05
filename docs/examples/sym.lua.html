@@ -32,6 +32,10 @@
 
 
 
+<h2>Examples</h2>
+<ul class="nowrap">
+  <li><strong>sym.lua</strong></li>
+</ul>
 <h2>Modules</h2>
 <ul class="nowrap">
   <li><a href="../modules/cols.col.html">cols.col</a></li>
@@ -39,34 +43,32 @@
   <li><a href="../modules/cols.sym.html">cols.sym</a></li>
   <li><a href="../modules/lib.color.html">lib.color</a></li>
   <li><a href="../modules/lib.misc.html">lib.misc</a></li>
-  <li><strong>xomo.coc</strong></li>
+  <li><a href="../modules/xomo.coc.html">xomo.coc</a></li>
   <li><a href="../modules/xomo.cocomo.html">xomo.cocomo</a></li>
 </ul>
 <h2>Tutorials</h2>
 <ul class="nowrap">
   <li><a href="../tutorials/README.md.html">README</a></li>
 </ul>
-<h2>Examples</h2>
-<ul class="nowrap">
-  <li><a href="../examples/sym.lua.html">sym.lua</a></li>
-</ul>
 
 </div>
 
 <div id="content">
 
-<h1>Module <code>xomo.coc</code></h1>
-<p>Return valid ranges in Cocomo</p>
-<p>
+    <h2>sym.lua</h2>
+<pre>
+<span class="keyword">local</span> eg=dofiled(<span class="string">"lib/eg"</span>).all
+<span class="keyword">local</span> oo=dofiled(<span class="string">"lib/misc"</span>).oo
+<span class="keyword">local</span> add=dofiled(<span class="string">"cols/col"</span>).add
+<span class="keyword">local</span> Sym=dofiled(<span class="string">"cols/sym"</span>)
 
-</p>
-
-
-
-<br/>
-<br/>
-
-
+eg {sym1=<span class="keyword">function</span>(s)
+   s=Sym.new()
+   <span class="keyword">for</span> _,v <span class="keyword">in</span> <span class="global">pairs</span> {<span class="string">"a"</span>,<span class="string">"a"</span>,<span class="string">"a"</span>,<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>} <span class="keyword">do</span> add(s,v) <span class="keyword">end</span>
+   <span class="global">assert</span>(s.seen.a == <span class="number">4</span>)
+   <span class="global">assert</span>(s.n == <span class="number">7</span>)
+   <span class="global">assert</span>(s.mode == <span class="string">"a"</span>)
+<span class="keyword">end</span>}  </pre>
 
 
 </div> <!-- id="content" -->

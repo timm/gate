@@ -3,7 +3,7 @@
 <html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <head>
-    <title>Reference</title>
+    <title>Gate documentation</title>
     <link rel="stylesheet" href="../ldoc.css" type="text/css" />
 </head>
 <body>
@@ -24,7 +24,7 @@
 
 <div id="navigation">
 <br/>
-<h1>gate</h1>
+<h1>Gate</h1>
 
 <ul>
   <li><a href="../index.html">Index</a></li>
@@ -46,6 +46,14 @@
   <li><a href="../modules/xomo.coc.html">xomo.coc</a></li>
   <li><strong>xomo.cocomo</strong></li>
 </ul>
+<h2>Tutorials</h2>
+<ul class="nowrap">
+  <li><a href="../tutorials/README.md.html">README</a></li>
+</ul>
+<h2>Examples</h2>
+<ul class="nowrap">
+  <li><a href="../examples/sym.lua.html">sym.lua</a></li>
+</ul>
 
 </div>
 
@@ -62,6 +70,10 @@
 <h2><a href="#Functions">Functions</a></h2>
 <table class="function_list">
 	<tr>
+	<td class="name" nowrap><a href="#effort">effort (self, coc)</a></td>
+	<td class="summary">Compute effort</td>
+	</tr>
+	<tr>
 	<td class="name" nowrap><a href="#new">new (self, coc)</a></td>
 	<td class="summary">Define the internal <a href="../modules/xomo.cocomo.html">cocomo</a> data structure:
  <code>x</code> slots (for business-level decisions) and
@@ -69,26 +81,22 @@
  like <code>self.effort</code> and `self.risk')</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#set">set (self, t)</a></td>
-	<td class="summary">Change the keys <code>x1,x2...</code>
- in  a model, (and wipe anyting computed from <code>x</code>).</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#effort">effort (self, coc)</a></td>
-	<td class="summary">Compute effort</td>
+	<td class="name" nowrap><a href="#ready">ready (self, coc, risk)</a></td>
+	<td class="summary">Mutatble objects, pairs of <code>{x,y}</code>
+ Ensures that <a href="../modules/xomo.cocomo.html#y">y</a> is up to date with the <code>x</code> variables.</td>
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#risks">risks (self, coc)</a></td>
 	<td class="summary">Compute risk</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#y">y (w, x)</a></td>
-	<td class="summary">Return a <a href="../modules/xomo.cocomo.html#y">y</a> value from <code>x</code></td>
+	<td class="name" nowrap><a href="#set">set (self, t)</a></td>
+	<td class="summary">Change the keys <code>x1,x2...</code>
+ in  a model, (and wipe anyting computed from <code>x</code>).</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#ready">ready (self, coc, risk)</a></td>
-	<td class="summary">Mutatble objects, pairs of <code>{x,y}</code>
- Ensures that <a href="../modules/xomo.cocomo.html#y">y</a> is up to date with the <code>x</code> variables.</td>
+	<td class="name" nowrap><a href="#y">y (w, x)</a></td>
+	<td class="summary">Return a <a href="../modules/xomo.cocomo.html#y">y</a> value from <code>x</code></td>
 	</tr>
 </table>
 
@@ -99,67 +107,6 @@
     <h2 class="section-header "><a name="Functions"></a>Functions</h2>
 
     <dl class="function">
-    <dt>
-    <a name = "new"></a>
-    <strong>new (self, coc)</strong>
-    </dt>
-    <dd>
-    Define the internal <a href="../modules/xomo.cocomo.html">cocomo</a> data structure:
- <code>x</code> slots (for business-level decisions) and
- <a href="../modules/xomo.cocomo.html#y">y</a> slots (for things derived from those decisions,
- like <code>self.effort</code> and `self.risk')
-
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">self</span>
-
-
-
-        </li>
-        <li><span class="parameter">coc</span>
-
-
-
-        </li>
-    </ul>
-
-
-
-
-
-</dd>
-    <dt>
-    <a name = "set"></a>
-    <strong>set (self, t)</strong>
-    </dt>
-    <dd>
-    Change the keys <code>x1,x2...</code>
- in  a model, (and wipe anyting computed from <code>x</code>).
-
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">self</span>
-            <span class="types"><span class="type">tab</span></span>
-         : a <a href="../modules/xomo.cocomo.html">cocomo</a> table
-        </li>
-        <li><span class="parameter">t</span>
-            <span class="types"><span class="type">tab</span></span>
-         : a list of key,value pairs that we will update.
-        </li>
-    </ul>
-
-    <h3>Returns:</h3>
-    <ol>
-
-        tab : an updated <a href="../modules/xomo.cocomo.html">cocomo</a> table
-    </ol>
-
-
-
-
-</dd>
     <dt>
     <a name = "effort"></a>
     <strong>effort (self, coc)</strong>
@@ -191,62 +138,30 @@
 
 </dd>
     <dt>
-    <a name = "risks"></a>
-    <strong>risks (self, coc)</strong>
+    <a name = "new"></a>
+    <strong>new (self, coc)</strong>
     </dt>
     <dd>
-    Compute risk
+    Define the internal <a href="../modules/xomo.cocomo.html">cocomo</a> data structure:
+ <code>x</code> slots (for business-level decisions) and
+ <a href="../modules/xomo.cocomo.html#y">y</a> slots (for things derived from those decisions,
+ like <code>self.effort</code> and `self.risk')
 
 
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">self</span>
-            <span class="types"><span class="type">tab</span></span>
-         : what we know about a project
+
+
+
         </li>
         <li><span class="parameter">coc</span>
-            <span class="types"><span class="type">tab</span></span>
-         : background knowledge about <code>self</code>
-        </li>
-    </ul>
-
-    <h3>Returns:</h3>
-    <ol>
-
-        number : the risk
-    </ol>
-
-
-
-
-</dd>
-    <dt>
-    <a name = "y"></a>
-    <strong>y (w, x)</strong>
-    </dt>
-    <dd>
-    Return a <a href="../modules/xomo.cocomo.html#y">y</a> value from <code>x</code>
-
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">w</span>
-            <span class="types"><span class="type">tab</span></span>
-         : type of column (*,+,-,1)
-        </li>
-        <li><span class="parameter">x</span>
-            <span class="types"><span class="type">number</span></span>
 
 
 
         </li>
     </ul>
 
-    <h3>Returns:</h3>
-    <ol>
-
-        number
-    </ol>
 
 
 
@@ -285,6 +200,99 @@
 
 
 </dd>
+    <dt>
+    <a name = "risks"></a>
+    <strong>risks (self, coc)</strong>
+    </dt>
+    <dd>
+    Compute risk
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">self</span>
+            <span class="types"><span class="type">tab</span></span>
+         : what we know about a project
+        </li>
+        <li><span class="parameter">coc</span>
+            <span class="types"><span class="type">tab</span></span>
+         : background knowledge about <code>self</code>
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        number : the risk
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "set"></a>
+    <strong>set (self, t)</strong>
+    </dt>
+    <dd>
+    Change the keys <code>x1,x2...</code>
+ in  a model, (and wipe anyting computed from <code>x</code>).
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">self</span>
+            <span class="types"><span class="type">tab</span></span>
+         : a <a href="../modules/xomo.cocomo.html">cocomo</a> table
+        </li>
+        <li><span class="parameter">t</span>
+            <span class="types"><span class="type">tab</span></span>
+         : a list of key,value pairs that we will update.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        tab : an updated <a href="../modules/xomo.cocomo.html">cocomo</a> table
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "y"></a>
+    <strong>y (w, x)</strong>
+    </dt>
+    <dd>
+    Return a <a href="../modules/xomo.cocomo.html#y">y</a> value from <code>x</code>
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">w</span>
+            <span class="types"><span class="type">tab</span></span>
+         : type of column (*,+,-,1)
+        </li>
+        <li><span class="parameter">x</span>
+            <span class="types"><span class="type">number</span></span>
+
+
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        number
+    </ol>
+
+
+
+
+</dd>
 </dl>
 
 
@@ -292,7 +300,7 @@
 </div> <!-- id="main" -->
 <div id="about">
 <i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
-<i style="float:right;">Last updated 2020-10-05 12:00:36 </i>
+<i style="float:right;">Last updated 2020-10-05 12:16:29 </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>
