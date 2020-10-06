@@ -27,7 +27,7 @@ weil=function(   a)
 end,
 
 sample1=function(   f,a)
-  a,f={},s.interpolate{{1,5},{2,5},{3,5},{4,5},{5,5}}
+  a,f={},s.interpolate{{1,5},{2,20},{3,5},{4,5},{8,5}}
   for i=1,2048 do 
      local x = s.rnd(f())
      a[x] = (a[x] or 0) + 1 
