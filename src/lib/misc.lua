@@ -54,18 +54,6 @@ function lib.keys(t)
       return u[i], t[u[i]] end end 
 end 
 
-local l,r,c=math.log,math.random, math.cos
---- Sample from a normal distribution
--- @number mu : defaults to 0
--- @number sd : defaults to 1
--- @returns number
-function lib.norm(mu,sd) 
-  local r = math.random
-  mu = mu or 0
-  sd = sd or 1
-  return mu + sd*(-2*l(r()))^0.5*c(6.2831853*r()) 
-end
-
 --- Print a table on one line
 -- @tab t : table to print
 -- @string pre : some text to prepend to the output (defaults to "")
@@ -92,6 +80,23 @@ function lib.oo(t,pre,    indent)
             lib.oo(v, pre, indent+1)
           else
             print(fmt .. tostring(v)) end end end end end
+end
+
+--- Report height on a normal curve. If above
+-- or below mean plus-or-minus 4 standard deviations,
+-- then return 0.
+-- @number x 
+-- @number mu
+-- @number sd
+-- @return  number
+function lib.normpdf(x, mu, sd)
+  mu = mu or 0
+  sd = sd or 1
+  if x < mu-4*sd then return 0 end 
+  if x > mu+4*sd then return 0 end
+  return (1 / 
+    (sd * math.sqrt(2 * math.pi))) * 
+     math.exp(-(((x - mu) * (x - mu)) / (2 * sd^2))) 
 end
 
 --- Report rogue locals
@@ -130,6 +135,7 @@ function lib.uses(klass,has)
   klass.__index = klass
   return new
 end
+
 
 --- Return a real number `z` wrapped within `lo` and `hi`.
 --  @number z

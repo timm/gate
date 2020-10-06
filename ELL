@@ -30,7 +30,7 @@ doc() {
   #(cd $Dir/src; ldoc -p "$1" -d $Dir/docs -a -f markdown ./ )
   (cd $Dir/src; ldoc -c $Dir/docs/config.ld -d $Dir/docs -a -f markdown ./ )
 }
-banner() {
+banner1() {
   cat <<-'EOF'
           ___
         _/ @@\     never escape ...
@@ -39,6 +39,24 @@ banner() {
         /     \
   jgs  /      _\
       `"""""``
+EOF
+}
+banner() { cat <<'EOF'
+
+                                 _.      
+                        _.-----'' `\ 
+            __..-----'''            `.
+           <            `\.           '\ 
+           :.              `.           `\ 
+            `:.              `.   x  a  d `-.
+              `:A S  S     y   . E p n       +.
+                `:. e  t  r     `.  __.===::::;)
+          e   T   `: S       ___.__>'::::::a:f/'
+     e          E   `.  _,===:::=-'-=-\"\"\"''
+ g      n  a         '-/:::''
+                       ''
+          r
+
 EOF
 }
 want=$Dir/.travis.yml
