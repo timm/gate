@@ -27,14 +27,33 @@ function sample1(   f,a)
   for i,j in pairs(a) do print(i,j) end
 end
 
---eg {bar1=bar1, tri1=tri1, sample1=sample1}
+local u  = s.uniformed
+local n  = s.normaled
+local t  = s.tried
+local i  = s.interpolated
+local w  = s.wrap
+local c  = s.controllable
+local b  = function(z) return w(c(z)) end
 
-m={y={f1={eval=function(z) return z.a/(z.b+z.c) * z.d end,
-          more=true}},
-   x={a=s.uniformed(1,20),
-      b=s.normaled(15,2),
-      c=s.tried(10,20,50),
-      d=s.interpolated({{0,0},{1,10},{2,10},{20,0}})}}
+m={y={f1 = {eval = function(z) 
+                     return z.a/(z.b+z.c) * z.d end,
+            more = true}},
+   x={a  = b(u(1,20)),
+      b  = b(n(15,2)),
+      c  = b(t(10,20,50)),
+      d  = b(i({{0,0},{1,10},{2,10},{20,0}}))}}
 
---for i=lib.oo(s.f(m))
+lib.oo(s.f(m))
 
+function walk(xy,k)
+  xs = xy.meta.x
+  lo,hi = xs[k].lo, xs[k].hi
+  for i= lo,hi,(hi-lo)/10 do
+    update(xyxxx
+    asdasd)
+    
+end
+function mws(m)
+  local xs={}
+  for k,x in pairs(m.x) do if x.use then xs[#xs+1]=k end end
+end

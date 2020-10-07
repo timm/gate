@@ -45,44 +45,48 @@ function s.interpolate(t)
   end
 end
 
-function s.g(xy)
+function s.update(xy,updates)
+  for k,x in pairs(updates) do 
+    f = xy.x[k].wrap and s.wrap or s.cap
+    xy.x[x] = f(xy.meta.x[k])     
+  end
   xy.y={}
-  for k,x in pairs(xy.x) do xy.x[x]=xy.meta.x[k].cap(x)     end
-  for k,y in pairs(xy.y) do xy.y[k]=xy.meta.y[k].eval(xy.x) end
+  for k,y in pairs(xy.y) do 
+    xy.y[k] = xy.meta.y[k].eval(xy.x) 
+  end
   return xy
 end
 
 function s.f(model)
-  local xy =  {meta=meta,x={},y={}}
+  local xy =  {meta=model,x={},y={}}
   for k,x in pairs(model.x) do xy.x[k] = x.eval() end
-  for k,y in pairs(model.y) do xy.y[k] = y.eval(out.x) end
+  for k,y in pairs(model.y) do xy.y[k] = y.eval(xy.x) end
   return xy
 end
 
-function s.cap(x,lo,hi)  return x<lo and lo or x>hi and hi or x end
-function s.wrap(x,lo,hi) return lo + x % (hi-lo) end
+function s.capped(x,lo,hi)  return x<lo and lo or x>hi and hi or x end
+function s.wrapped(x,lo,hi) return lo + x % (hi-lo) end
 
-function s.uniformed(lo,hi,cap)
+function s.wrap(eg)         eg.wrap=true; return eg end
+function s.controllable(eg) eg.use =true; return eg end
+
+function s.uniformed(lo,hi)
   return {f= "uniform", 
-          cap = cap and s.cap or s.wrap,
           eval= function() return lo+(hi-lo)*math.random() end,
           lo= lo, hi= hi} end
 
-function s.normaled(mu,sd,cap)
+function s.normaled(mu,sd)
   return {f="normal", 
-          cap = cap and s.cap or s.wrap,
           eval=function() return s.norm(mu,sd) end,
           lo=mu-3*sd, hi=mu+3*sd,mu=mu,sd=sd} end
 
-function s.tried(lo,mode,hi,cap)
+function s.tried(lo,mode,hi)
   return {f="triangular", 
-          cap = cap and s.cap or s.wrap,
           eval=function() return s.tri(lo,mode,hi)  end,
           lo=lo, hi=hi,mode=mode} end
 
-function s.interpolated(bars,cap)
+function s.interpolated(bars)
   return {f="normal", 
-          cap = cap and s.cap or s.wrap,
           eval= s.interpolate(bars) ,
           lo=bars[1][1], hi=bars[#bars][1] } end
 
