@@ -35,7 +35,7 @@
 <br/>
 
 <center>
-<img  width=200 src="https://static.wikia.nocookie.net/officialclubpenguinonline/images/6/6e/Ninja_Gate_sprite_006.png/revision/latest/top-crop/width/300/height/300?cb=20190112091533">
+<img  width=200 src="docs/gate.png">
 </center>
 <h1>$(ldoc.project) </h1>
 # if not ldoc.single and module then -- reference back to project index
