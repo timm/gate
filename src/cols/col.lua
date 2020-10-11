@@ -5,7 +5,7 @@ local the = dofiled("the")
 local col = {}
 
 --- The initialization mixin.
--- Sett up  a new column `c`'s
+-- Set up  a new column `c`'s
 -- `txt` name and `pos`ition
 -- @tab self : some column
 -- @string  txt : optional, defaults to ""

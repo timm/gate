@@ -1,6 +1,10 @@
 -- vim: ft=lua ts=2 sw=2 et:
 
 --- Summarize a stream of numbers
+-- while maintaining `mu,sd` $\mu$ mean, $\sigma$ standard deviation).
+-- When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are
+-- $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$
+-- <i class="fa fa-camera-retro"></i>  <!-- version 4's syntax -->
 
 local uses=dofiled("lib/misc").uses
 local col=dofiled("cols/col").col

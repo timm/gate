@@ -5,6 +5,17 @@
 <head>
     <title>$(ldoc.title)</title>
     <link rel="stylesheet" href="$(ldoc.css)" type="text/css" />
+<script id=MathJax-script async 
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+                      tex2jax: {
+                                inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                                processEscapes: true
+                              }});
+</script>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
 # if ldoc.custom_css then -- add custom CSS file if configured.
     <link rel="stylesheet" href="$(ldoc.custom_css)" type="text/css" />
 # end
@@ -36,6 +47,12 @@
 
 <center>
 <img  width=200 src="https://github.com/timm/gate/raw/main/docs/img/gate.png">
+<br>
+<a href="http://github.com/timm/gate">
+{language=lua, license=mit, author=timmenzies, source=github}
+<br>
+<i class="fa  fa-github fa-3x"></i>
+</a>
 </center>
 <h1>$(ldoc.project) </h1>
 # if not ldoc.single and module then -- reference back to project index
